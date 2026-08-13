@@ -24,7 +24,7 @@ Think of it like building with Lego bricks:
 - You stack them in a certain **order** to build a page.
 - A browser reads those bricks and draws the page on your screen.
 
-HTML does **not** care about colors or pretty styling by itself (that's normally CSS's job). This project, however, styles everything using older HTML *attributes* so that **no CSS file is needed at all**.
+HTML does **not** handle colors or pretty styling by itself (that's normally CSS's job). This project keeps things simple and clean: it uses basic HTML tags and a few simple *attributes* so that **no CSS file is needed at all**.
 
 ---
 
@@ -40,7 +40,7 @@ Here is the code, explained line by line. The line numbers refer to `index.html`
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Campus Event Board - IIIT Vadodara</title>
+    <title>Campus Event Board</title>
   </head>
 ```
 
@@ -53,206 +53,93 @@ Here is the code, explained line by line. The line numbers refer to `index.html`
 
 > 💡 **Note:** The `<head>` content is invisible on the page itself — it only controls tab text, language, and mobile behavior.
 
-### Lines 8–20: The body begins + the logo and main heading
+### Lines 8–13: The body begins + the logo and page title
 
 ```html
-<body text="#3d3d3d" link="#1a5276" vlink="#6c3483" alink="#e74c3c">
+<body>
   <center>
-    <img src="logo.png" alt="IIIT Vadodara Logo" width="130" height="130" />
-    <br /><br />
-    <font face="Georgia, serif" size="7" color="#1a5276">
-      <b>Campus Event Board</b>
-    </font>
-    <br />
-    <font face="Arial, sans-serif" size="4" color="#8e6f1e">
-      <i>Indian Institute of Information Technology Vadodara</i>
-    </font>
+    <img src="logo.png" alt="IIIT Vadodara Logo" width="150" height="150" />
+    <h1>Campus Event Board</h1>
+    <h2>Indian Institute of Information Technology Vadodara</h2>
   </center>
 ```
 
-- **`<body ...>`** — Everything visible on the page lives *inside* the body. Its attributes set default colors:
-  - `text` → normal text color (dark grey)
-  - `link` → color of clickable links
-  - `vlink` → color of **v**isited links
-  - `alink` → color of **a**ctive (currently clicked) links
-- **`<center>...</center>`** — Centers whatever is inside it on the screen.
-- **`<img src="logo.png" ... />`** — Displays an image.
+- **`<body>`** — Everything visible on the page lives *inside* the body.
+- **`<center>...</center>`** — Centers whatever is inside it on the screen. Here it centers the logo and the two headings.
+- **`<img src="logo.png" ... />`** — Displays an image (the college logo).
   - `src` → the file name of the image (`logo.png`)
   - `alt` → alternative text shown if the image fails to load (good for accessibility)
-  - `width` / `height` → how big the image should be (130×130 pixels)
-- **`<br />`** — A line **br**eak. It moves the next content to a new line (like pressing Enter).
-- **`<font face="..." size="..." color="...">`** — Styles text:
-  - `face` → the font family (e.g., Georgia, Arial)
-  - `size` → how big (1 = small, 7 = biggest)
-  - `color` → the text color (in hex, like `#1a5276`)
-- **`<b>...</b>`** — Makes text **bold**.
-- **`<i>...</i>`** — Makes text *italic*.
+  - `width="150"` and `height="150"` → how big the image should be, in pixels (here a 150×150 square)
+- **`<h1>...</h1>`** — A level-1 heading. `h1` is the biggest heading and is usually used for the page's main title. Browsers show it large and bold by default.
+- **`<h2>...</h2>`** — A level-2 heading. It is smaller than `h1` and is used here for the subtitle (the college name).
 
-> So the top of the page shows the logo, then a big bold title "Campus Event Board", then a smaller italic subtitle with the college name.
-
-### Lines 22–29: The scrolling marquee banner
+> So the top of the page shows the logo, then the main title "Campus Event Board", then the college name as a subtitle — all centered.
+### Lines 15–17: The welcome message + first divider
 
 ```html
-<marquee bgcolor="#e8d59a" behavior="scroll" direction="left" scrollamount="6">
-  <font face="Verdana, sans-serif" size="3" color="#7d6608">
-    <b>
-      Welcome to the Campus Event Board! ... &nbsp;|&nbsp; ...
-    </b>
-  </font>
-</marquee>
-```
+<p>Welcome to the Campus Event Board. Find all the latest events and activities happening on campus.</p>
 
-- **`<marquee>...</marquee>`** — Creates a scrolling text banner (a fun, old-school HTML feature).
-  - `bgcolor` → background color of the banner
-  - `direction="left"` → text moves leftward
-  - `scrollamount="6"` → how fast it scrolls
-- **`&nbsp;`** — The HTML code for a **non-breaking space** (a space that can't be split across lines). Used here to add spacing around the `|` separator.
-- **`|`** — A plain vertical bar used as a visual separator between announcements.
-
-### Lines 31–39: First divider + "Upcoming Events" heading
-
-```html
-<center>
-  <hr width="70%" color="#1a5276" size="3" />
-</center>
-
-<center>
-  <font face="Arial, sans-serif" size="5" color="#1a5276">
-    <b><u>Upcoming Events</u></b>
-  </font>
-</center>
-```
-
-- **`<hr />`** — A **h**orizontal **r**ule (a straight line across the page).
-  - `width="70%"` → the line spans 70% of the page
-  - `color` → the line's color
-  - `size` → the line's thickness
-- **`<u>...</u>`** — Underlines the text.
-- So this section draws a decorative line, then shows a big underlined "Upcoming Events" heading.
-
-### Lines 41–69: The events table
-
-```html
-<table border="2" bordercolor="#1a5276" cellpadding="8" cellspacing="0" width="80%" bgcolor="#ffffff">
-  <tr bgcolor="#1a5276">
-    <th>...</th>  <!-- column headers -->
-  </tr>
-  <tr>
-    <td>...</td>  <!-- row 1 data -->
-  </tr>
-  ...
-</table>
-```
-
-A **table** is a grid of rows and columns, perfect for listing events neatly.
-
-- **`<table ...>`** — Creates the table. Its attributes:
-  - `border="2"` → thickness of the table border
-  - `bordercolor` → border color
-  - `cellpadding="8"` → space *inside* each cell around the text
-  - `cellspacing="0"` → space *between* cells (0 = no gap)
-  - `width="80%"` → the table takes up 80% of the page
-  - `bgcolor` → background color of the table
-- **`<tr>...</tr>`** — A **t**able **r**ow (one horizontal line of cells).
-- **`<th>...</th>`** — A **t**able **h**eader cell. Text here is bold and centered by default. Used for the column titles: **Event**, **Day & Time**, **Venue**.
-- **`<td>...</td>`** — A **t**able **d**ata cell. Holds one piece of information, like "Coding Hackathon".
-
-> Rows with `bgcolor="#f1e9cd"` (a light cream) alternate with white rows. This "zebra striping" makes the table easier to read, even without CSS.
-
-### Lines 71–86: "How to Register" ordered list
-
-```html
-<font face="Arial, sans-serif" size="3">
-  <center>
-    <b><font size="4" color="#1a5276">How to Register</font></b><br />
-    <ol align="left">
-      <li>Pick an event from the list above.</li>
-      <li>Visit the Student Activities Office to register.</li>
-      <li>Collect your event pass on the day of the event.</li>
-    </ol>
-  </center>
-</font>
-```
-
-- **`<ol>...</ol>`** — An **o**rdered **l**ist: it shows items numbered 1, 2, 3 automatically.
-- **`<li>...</li>`** — A **l**ist **i**tem (one entry inside the list).
-- **`align="left"`** — Lines the numbers/text to the left inside the centered block.
-
-> `ol` gives numbers; `ul` (unordered list) would give bullet points instead. This project uses `ol` here because the steps should be in order.
-
-### Lines 88–131: The 3-column section (About / Contact / Quick Links)
-
-```html
-<table border="0" width="80%" cellpadding="6" cellspacing="0">
-  <tr>
-    <td align="center" bgcolor="#1a5276" width="33%">About IIIT Vadodara</td>
-    <td align="center" bgcolor="#1a5276" width="33%">Contact Us</td>
-    <td align="center" bgcolor="#1a5276" width="34%">Quick Links</td>
-  </tr>
-  <tr>
-    <td valign="top" bgcolor="#ffffff"> ...info... </td>
-    <td valign="top" bgcolor="#ffffff"> ...contact info... </td>
-    <td valign="top" bgcolor="#ffffff"> ...links... </td>
-  </tr>
-</table>
-```
-
-- This table has **2 rows** and **3 columns**.
-  - Row 1 = the three dark blue **column titles**.
-  - Row 2 = the actual **content** under each title.
-- **`align="center"`** → centers the text inside a cell.
-- **`valign="top"`** → **v**ertical **align** to the top, so text starts at the top of each cell.
-- **`width="33%"` / `"34%"`** → each column takes roughly one-third of the table.
-- Inside the Contact cell, notice the **links**:
-  - `<a href="mailto:info@iiitvadodara.ac.in">` → an email link. Clicking it opens the user's email app.
-  - `<a href="https://iiitvadodara.ac.in">` → a normal link to a website. The `href` holds the destination; the text between the tags is what the user clicks.
-
-### Lines 137–147: "About Us" paragraph
-
-```html
-<font face="Arial, sans-serif" size="3">
-  <center>
-    <b><font size="4" color="#1a5276">About Us</font></b>
-    <p>
-      The Campus Event Board is run by the Student Council of IIIT Vadodara ...
-      <a href="mailto:events@iiitvadodara.ac.in">events@iiitvadodara.ac.in</a>.
-    </p>
-  </center>
-</font>
+<hr />
 ```
 
 - **`<p>...</p>`** — A **p**aragraph. The browser automatically adds some space before and after it.
-- This section is a simple paragraph describing who runs the site.
+- **`<hr />`** — A **h**orizontal **r**ule: a straight line across the page that acts as a divider between sections.
 
-### Lines 149–167: The footer
+### Lines 19–24: The upcoming events list
 
 ```html
-<hr width="100%" color="#1a5276" size="3" />
-
-<center>
-  <font face="Georgia, serif" size="3" color="#1a5276">
-    <b>Campus Event Board - IIIT Vadodara</b>
-  </font>
-  <br />
-  <font face="Arial, sans-serif" size="2" color="#5a5a5a">
-    Indian Institute of Information Technology Vadodara<br />
-    c/o Block No. 9, Government Engineering College, Sector-28,<br />
-    Gandhinagar, Gujarat - 382028, India<br />
-    Phone: +91 79-XXXX-XXXX &nbsp;|&nbsp; Email: <a href="mailto:info@iiitvadodara.ac.in">info@iiitvadodara.ac.in</a><br />
-    Website: <a href="https://iiitvadodara.ac.in">iiitvadodara.ac.in</a>
-  </font>
-  <br /><br />
-  <font face="Arial, sans-serif" size="2" color="#8b0000">
-    <b>&copy; 2026 Campus Event Board, IIIT Vadodara. All rights reserved.</b>
-  </font>
-</center>
+<h3>Upcoming Events</h3>
+<ul>
+  <li>Tech Talk: Introduction to AI - Monday, Auditorium</li>
+  <li>Coding Hackathon - Friday, CS Block</li>
+  <li>Cultural Fest - Saturday, Main Grounds</li>
+</ul>
 ```
 
-- A full-width `<hr>` separates the footer from the rest of the page.
-- **`&copy;`** — The HTML entity that displays the © copyright symbol.
-- The footer repeats the college's full address, phone, email, and website — exactly like a typical website footer.
+- **`<h3>...</h3>`** — A level-3 heading. It is smaller than `h2` and is used here for section titles.
+- **`<ul>...</ul>`** — An **u**nordered **l**ist: it shows its items as bullet points.
+- **`<li>...</li>`** — A **l**ist **i**tem (one entry inside the list).
 
-### Lines 169–170: Closing the page
+> Each `<li>` holds one event, written as: event name - day, venue. This keeps the information short and readable as a simple bullet list.
+
+### Lines 26–32: The contact section
+
+```html
+<hr />
+
+<h3>Contact Us</h3>
+<p><b>Address:</b> Block No. 9, Government Engineering College, Sector-28, Gandhinagar, Gujarat - 382028</p>
+<p><b>Phone:</b> +91-79-29750281</p>
+<p><b>Email:</b> <a href="mailto:info@iiitvadodara.ac.in">info@iiitvadodara.ac.in</a></p>
+<p><b>Website:</b> <a href="https://iiitvadodara.ac.in">iiitvadodara.ac.in</a></p>
+```
+
+- **`<b>...</b>`** — Makes text **bold**. It is used here to make the labels ("Address:", "Phone:", etc.) stand out.
+- **`<a href="...">...</a>`** — An **a**nchor: a clickable link.
+  - `href` → the destination.
+  - `mailto:info@iiitvadodara.ac.in` → an email link. Clicking it opens the user's email app.
+  - `https://iiitvadodara.ac.in` → a normal link that opens a website.
+  - The text between the tags is what the user sees and clicks.
+
+> So this section shows the college's address, phone number, email, and website as simple lines, with the labels in bold and the email/website as clickable links.
+
+### Lines 34–40: The footer
+
+```html
+<hr />
+
+<footer>
+  <center>
+    <p>&copy; 2026 Campus Event Board, IIIT Vadodara. All rights reserved.</p>
+  </center>
+</footer>
+```
+
+- **`<footer>...</footer>`** — A semantic tag that marks the page's footer (bottom section).
+- **`<center>`** — Centers the copyright text.
+- **`&copy;`** — The HTML entity that displays the © copyright symbol.
+
+### Lines 41–42: Closing the page
 
 ```html
   </body>
@@ -261,7 +148,6 @@ A **table** is a grid of rows and columns, perfect for listing events neatly.
 
 - **`</body>`** — Closes the body (everything visible ends here).
 - **`</html>`** — Closes the root html tag, marking the very end of the document.
-
 ---
 
 ## 🧩 Handy "cheat sheet" of tags used in this project
@@ -274,41 +160,23 @@ A **table** is a grid of rows and columns, perfect for listing events neatly.
 | `<body>` | body | Everything visible on the page |
 | `<center>` | center | Centers its contents |
 | `<img>` | image | Shows an image |
-| `<br />` | break | Moves to a new line |
-| `<font>` | font | Styles text (size, color, font) |
-| `<b>` | bold | Makes text bold |
-| `<i>` | italic | Makes text italic |
-| `<u>` | underline | Underlines text |
-| `<marquee>` | marquee | Makes text scroll |
+| `<h1>` | heading 1 | Big main heading |
+| `<h2>` | heading 2 | Subheading |
+| `<h3>` | heading 3 | Smaller section heading |
+| `<p>` | paragraph | A paragraph of text |
 | `<hr />` | horizontal rule | Draws a horizontal line |
-| `<table>` | table | Creates a table grid |
-| `<tr>` | table row | A row in a table |
-| `<th>` | table header | A header cell |
-| `<td>` | table data | A normal data cell |
-| `<ol>` | ordered list | Numbered list |
 | `<ul>` | unordered list | Bullet list |
 | `<li>` | list item | One item in a list |
-| `<p>` | paragraph | A paragraph of text |
+| `<b>` | bold | Makes text bold |
 | `<a>` | anchor | A clickable link |
+| `<footer>` | footer | Marks the bottom of the page |
 
 **A rule to remember:** Most tags come in **pairs** — an opening tag `<tag>` and a closing tag `</tag>` (with a slash). A few are *self-closing* and don't need a closing tag: `<br />`, `<hr />`, `<img />`, `<meta />`.
 
----
-
-## 🎨 How is this styled without CSS?
-
-Normal modern websites use a separate CSS file for colors and layout. This project deliberately avoids CSS for the assignment, so it uses **older HTML attributes** instead:
-
-- `bgcolor="..."` → background color
-- `text="..."`, `color="..."` → text color
-- `font face` → font family
-- `font size` → text size
-- `width`, `height` → sizes of elements/images
-- `border`, `cellpadding`, `cellspacing` → table appearance
-
-These attributes are mostly outdated (CSS is the proper modern way), but they are perfect for learning the fundamentals and are widely accepted in beginner HTML assignments.
-
-> ⚠️ **Heads up:** `<center>`, `<font>`, and `<marquee>` are considered *deprecated* in modern HTML. They still work in browsers, but teachers and professionals will usually tell you to prefer CSS. For a learning assignment, they're fine!
+**Useful attributes used on the image (`<img>`):**
+- `src="logo.png"` → which image file to show
+- `alt="IIIT Vadodara Logo"` → text shown if the image can't load
+- `width="150"` and `height="150"` → the image's size in pixels
 
 ---
 
@@ -325,17 +193,18 @@ You can also right-click `index.html` → **Open with** → choose a browser.
 | Problem | Likely cause & fix |
 |---------|--------------------|
 | Logo doesn't show | `logo.png` is missing from the folder, or the file name/case doesn't match. |
-| Page looks plain / no colors | You might have opened a *different* file, or the browser cached an old version (press `Ctrl + F5`). |
-| Text appears but no styling | Make sure `index.html` is the exact file in this folder. |
+| Page looks plain | That's normal — this version uses no CSS, so it relies on the browser's default styling. |
+| Text appears but no image | Check that the `src="logo.png"` value matches the actual file name. |
 
 ---
 
 ## ✏️ Ideas to practice
 
-- Change the **colors** (edit the hex values like `#1a5276`).
-- Add a **new event row** by copying a `<tr>...</tr>` block in the table.
-- Add a **bullet list** with `<ul>` and `<li>`.
-- Change the **marquee speed** by editing `scrollamount`.
+- Change the **logo size** by editing `width` and `height` on the `<img>`.
+- Add a **new event** with another `<li>...</li>` line in the list.
+- Add a **numbered list** with `<ol>` and `<li>` (for steps).
+- Change the **copyright year** in the footer.
+- Add more **sections** with a new `<h3>` and some `<p>` text.
 - Add more **pages** and link them with `<a href="page2.html">`.
 
 ---
