@@ -1,0 +1,3 @@
+NOTES
+
+"View Page Source" (Ctrl+U) opens a tab showing the raw HTML code of the page — including tags, attributes, and content from the <head> and <body> (like headings, images, tables, and links) — which is exactly the source file (index.html) the browser downloaded and used to render the page you see on screen.
