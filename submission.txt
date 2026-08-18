@@ -1,0 +1,39 @@
+Web Development Lab (Assignment 1) - Submission
+Campus Event Board - IIIT Vadodara
+
+# Do this / How
+
+1 Install Visual Studio Code
+
+Download it free from code.visualstudio.com. This is where you will
+write all your code. Install it with the default options.
+
+2 "Live Server" extension in VS Code
+
+Right-click and "Open with Live Server". The page reloads
+automatically every time you save.
+
+3 Make your project folder
+
+Create a folder called event-board. Open this folder in VS Code with
+File -> Open Folder.
+
+4 Create the home page file
+
+Inside the folder, make a new file called index.html. The name index is
+special - it is the page a site shows first.
+
+5 Write a minimal page
+
+Type a basic HTML page with a heading that says "Campus Event
+Board". Include elements as per your wish. Save with Ctrl+S.
+
+6 Open it in the browser
+
+Double-click index.html in your folder, or drag it onto the browser
+window. You should see your heading and sentence.
+
+7 Look at what the browser received
+
+Right-click the page and choose "View Page Source". This is the
+exact HTML the browser read. Notice it is the text you wrote.
